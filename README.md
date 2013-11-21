@@ -1,4 +1,4 @@
 scaladis
 ========
 
-DIS library in scala
+A Distributed Interactive Simulation (DIS) library in scala

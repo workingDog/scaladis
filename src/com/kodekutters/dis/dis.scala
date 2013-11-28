@@ -42,8 +42,9 @@ import javax.xml.bind.DatatypeConverter
 //------------------------------------------------------------------------------------------------
 //----------------helper--------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------
-class Base64Binary(_vector: Vector[Byte]) extends scala.collection.IndexedSeq[Byte] {
-  val vector = _vector
+class Base64Binary(v: Vector[Byte]) extends scala.collection.IndexedSeq[Byte] {
+  val vector = v
+
   def length = vector.length
   def apply(idx: Int): Byte = vector(idx)
   override def toString: String = DatatypeConverter.printBase64Binary(vector.toArray)
@@ -292,7 +293,7 @@ case class AggregateMarking(characters: Option[Base64Binary] = None, characterSe
 case class AggregateIDList(aggregateIDList: Option[AggregateID]*)
 
 
-case class EntityIDListList(entityIDList: Option[EntityID]*)
+case class EntityIDList(entityIDList: Option[EntityID]*)
 
 
 case class SilentAggregateSystemList(silentAggregateSystemList: Option[EntityType]*)
@@ -310,7 +311,7 @@ case class AggregateStatePdu(aggregateID: Option[EntityID] = None,
   aggregateType: Option[EntityType] = None,
   centerOfMass: Option[Vector3Double] = None,
   dimensions: Option[Vector3Float] = None,
-  entityIDListList: Option[EntityIDListList] = None,
+  entityIDListList: Option[EntityIDList] = None,
   orientation: Option[Orientation] = None,
   silentAggregateSystemList: Option[SilentAggregateSystemList] = None,
   silentEntitySystemList: Option[SilentEntitySystemList] = None,
@@ -899,19 +900,19 @@ case class EventReportReliablePdu(originatingEntityID: Option[EntityID] = None,
   numberOfVariableDatumRecords: Long,
   pad1: Long) extends SimulationManagementWithReliabilityFamilyPduTrait
 
-
-case class FastEntityStatePdu(articulationParametersList: Option[ArticulationParametersList] = None,
-  marking: Option[Base64Binary] = None,
-  otherParameters: Option[Base64Binary] = None,
-  exerciseID: Short,
-  padding: Short,
-  pduLength: Int,
-  pduType: Short,
-  protocolFamily: Short,
-  protocolVersion: Short,
-  timestamp: Long) extends EntityInformationFamilyPduTrait {
-}
-
+//
+//case class FastEntityStatePdu(articulationParametersList: Option[ArticulationParametersList] = None,
+//  marking: Option[Base64Binary] = None,
+//  otherParameters: Option[Base64Binary] = None,
+//  exerciseID: Short,
+//  padding: Short,
+//  pduLength: Int,
+//  pduType: Short,
+//  protocolFamily: Short,
+//  protocolVersion: Short,
+//  timestamp: Long) extends EntityInformationFamilyPduTrait {
+//}
+//
 
 
 case class FirePdu(firingEntityID: Option[EntityID] = None,
